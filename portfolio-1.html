@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rohith K — Portfolio</title>
+  <meta name="description" content="Portfolio of Rohith K — AI & Data Science student showcasing projects, skills, and achievements for internships." />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0c10;
+      --panel: #111317;
+      --muted: #8b949e;
+      --text: #e6edf3;
+      --brand: #7c5cff;
+      --accent: #61dafb;
+      --ring: rgba(124,92,255,.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+    :root.light{
+      --bg: #f7f7fb;
+      --panel: #ffffff;
+      --muted: #60636b;
+      --text: #0f172a;
+      --brand: #5b43e3;
+      --accent: #0ea5e9;
+      --ring: rgba(14,165,233,.25);
+      --shadow: 0 10px 30px rgba(2,6,23,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji;
+      background:radial-gradient(1200px 600px at 100% -10%, rgba(124,92,255,.15), transparent 60%),
+                 radial-gradient(800px 400px at -10% 120%, rgba(14,165,233,.12), transparent 60%),
+                 var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(8px);
+      background:color-mix(in oklab, var(--bg), transparent 25%);
+      border-bottom:1px solid color-mix(in oklab, var(--text), transparent 92%);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px}
+    .badge{font-size:12px;padding:2px 8px;border-radius:999px;background:color-mix(in oklab, var(--brand), transparent 80%);border:1px solid color-mix(in oklab, var(--brand), transparent 50%)}
+    .nav-links{display:flex;align-items:center;gap:18px}
+    .nav-links a{padding:8px 10px;border-radius:10px}
+    .nav-links a.active, .nav-links a:hover{background:color-mix(in oklab, var(--text), transparent 92%)}
+    .theme, .menu{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;border:1px solid color-mix(in oklab, var(--text), transparent 90%);background:var(--panel);box-shadow:var(--shadow);cursor:pointer}
+    .menu{display:none}
+
+    /* Hero */
+    .hero{padding:80px 0 30px;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+    .card{background:var(--panel);border:1px solid color-mix(in oklab, var(--text), transparent 90%);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero .info{padding:28px}
+    h1{font-size:clamp(28px, 3.5vw, 44px);line-height:1.2;margin:0 0 12px}
+    .subtitle{color:var(--muted);margin:0 0 14px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .btn{display:inline-flex;align-items:center;gap:10px;border-radius:12px;padding:12px 16px;font-weight:600;border:1px solid color-mix(in oklab, var(--text), transparent 85%)}
+    .btn.primary{background:var(--brand);border-color:transparent;color:white;box-shadow:0 10px 30px var(--ring)}
+    .btn:hover{transform:translateY(-1px)}
+
+    .hero .photo{padding:0;overflow:hidden;position:relative}
+    .avatar{aspect-ratio:1/1;border-bottom-left-radius:0;border-bottom-right-radius:0;}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:14px;border-top:1px dashed color-mix(in oklab, var(--text), transparent 80%)}
+    .stat{padding:10px;border-radius:12px;background:color-mix(in oklab, var(--text), transparent 94%);text-align:center}
+    .stat b{display:block;font-size:20px}
+
+    /* Sections */
+    section{padding:40px 0}
+    .section-title{font-size:24px;margin:0 0 16px}
+    .grid{display:grid;gap:16px}
+    .skills{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+    .skill{padding:14px;border-radius:14px;border:1px solid color-mix(in oklab, var(--text), transparent 88%);background:var(--panel)}
+    .meter{height:8px;background:color-mix(in oklab, var(--text), transparent 92%);border-radius:999px;overflow:hidden;margin-top:10px}
+    .bar{height:100%;background:linear-gradient(90deg,var(--brand),var(--accent))}
+
+    .projects{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .project{display:flex;flex-direction:column}
+    .project .cover{aspect-ratio:16/9;border-radius:14px;border:1px solid color-mix(in oklab, var(--text), transparent 88%);background:color-mix(in oklab, var(--text), transparent 94%);display:grid;place-items:center;font-weight:700}
+    .project .body{padding:12px}
+
+    .timeline{position:relative;padding-left:28px}
+    .timeline::before{content:"";position:absolute;left:10px;top:0;bottom:0;width:2px;background:color-mix(in oklab, var(--text), transparent 85%)}
+    .tl-item{position:relative;margin:0 0 16px;padding:12px 12px 12px 18px;background:var(--panel);border:1px solid color-mix(in oklab, var(--text), transparent 88%);border-radius:12px}
+    .tl-item::before{content:"";position:absolute;left:-8px;top:16px;width:14px;height:14px;border-radius:999px;background:var(--brand);box-shadow:0 0 0 4px color-mix(in oklab, var(--brand), transparent 70%)}
+
+    .contact{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid color-mix(in oklab, var(--text), transparent 88%);background:var(--panel);color:var(--text)}
+    textarea.input{min-height:120px;resize:vertical}
+
+    footer{padding:30px 0;color:var(--muted);border-top:1px solid color-mix(in oklab, var(--text), transparent 90%)}
+
+    /* Utilities */
+    .hidden{display:none}
+    .tag{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid color-mix(in oklab, var(--text), transparent 85%);background:color-mix(in oklab, var(--text), transparent 94%)}
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .menu{display:grid}
+      .nav-links{display:none}
+      .nav.open .nav-links{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:10px;background:var(--panel);border:1px solid color-mix(in oklab, var(--text), transparent 90%);border-radius:12px;position:absolute;top:60px;right:20px;box-shadow:var(--shadow)}
+    }
+  </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Rohith K",
+      "url": "",
+      "sameAs": [],
+      "jobTitle": "AI & Data Science Student",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Annamacharya Institute of Technology & Sciences"
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container nav" id="nav">
+      <a class="brand" href="#home" aria-label="Go to top">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" opacity=".25"/><path d="M7 13.5L12 5l5 8.5-5 5-5-5z" fill="currentColor"/></svg>
+        <span>Rohith <span style="opacity:.7">K</span></span>
+        <span class="badge">Open to Internships</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div style="display:flex; gap:8px">
+        <button class="theme" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">🌗</button>
+        <button class="menu" id="menuBtn" aria-expanded="false" aria-controls="nav">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero container">
+      <div class="info card">
+        <h1>Hi, I'm Rohith — aspiring <span style="color:var(--brand)">AI & Data Science</span> engineer.</h1>
+        <p class="subtitle">I love building clean, efficient software. Currently seeking a <b>software / data</b> internship where I can contribute to real-world projects and keep learning.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="#contact">Contact Me</a>
+          <a class="btn" href="assets/RohithK-Resume.pdf" download>Download Resume</a>
+        </div>
+      </div>
+      <aside class="photo card">
+        <!-- Replace the src with your photo if desired -->
+        <img class="avatar" src="C:\Users\kanam\OneDrive\Pictures\IMG-20250411-WA0011.jpg" alt="Rohith portrait placeholder"/>
+        <div class="stats">
+          <div class="stat"><b>10+</b><span>Mini Projects</span></div>
+          <div class="stat"><b>6</b><span>Core Skills</span></div>
+          <div class="stat"><b>3</b><span>Certifications</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about" class="container">
+      <h2 class="section-title">About</h2>
+      <div class="grid" style="grid-template-columns:1.2fr .8fr; align-items:start">
+        <div class="card" style="padding:18px">
+          <p>I'm an undergraduate in <b>Artificial Intelligence & Data Science (AIDS)</b> at <b>Annamacharya Institute of Technology & Sciences</b>. I enjoy solving problems with code, from clean UIs to data pipelines and ML models.</p>
+          <p>When I'm not coding, I tinker with Java and Python practice problems, contribute to small open-source issues, and learn system design basics.</p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px">
+            <span class="tag">Java 30%</span>
+            <span class="tag">Python basics</span>
+            <span class="tag">HTML/CSS/JS</span>
+            <span class="tag">Data Structures</span>
+            <span class="tag">D.S using python</span>
+            <span class="tag">Git & GitHub</span>
+          </div>
+        </div>
+        <div class="card" style="padding:18px">
+          <h3 style="margin:6px 0 8px">Quick Facts</h3>
+          <ul style="margin:0 0 8px 18px">
+            <li>Seeking: <b>Summer/Winter 2025 internship</b></li>
+            <li>Location: India (open to remote)</li>
+            <li>Interests: Backend, Data Engineering, ML basics</li>
+            <li>LeetCode: 100+ problems solved (targeting 200+)</li>
+          </ul>
+          <a class="btn" href="mailto:rohith@example.com">📧 rohith@example.com</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="container">
+      <h2 class="section-title">Skills</h2>
+      <div class="grid skills">
+        <!-- Repeat skill blocks as needed; set data-level percentage -->
+        <div class="skill"><b>Java 30%</b><div class="meter"><div class="bar" style="width:80%"></div></div></div>
+        <div class="skill"><b>Python basics</b><div class="meter"><div class="bar" style="width:78%"></div></div></div>
+        <div class="skill"><b>HTML/CSS</b><div class="meter"><div class="bar" style="width:85%"></div></div></div>
+        <div class="skill"><b>JavaScript</b><div class="meter"><div class="bar" style="width:70%"></div></div></div>
+        <div class="skill"><b>Data Structures</b><div class="meter"><div class="bar" style="width:68%"></div></div></div>
+        <div class="skill"><b>D.S using python</b><div class="meter"><div class="bar" style="width:72%"></div></div></div>
+        <div class="skill"><b>Git & GitHub</b><div class="meter"><div class="bar" style="width:76%"></div></div></div>
+      </div>
+    </section>
+
+    <section id="projects" class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="grid projects">
+        <article class="project card">
+          <div class="cover">Op Generator (Java)</div>
+          <div class="body">
+            <p>Tiny console app to add, update, and compute student grade stats. Focus on OOP, collections, and file I/O.</p>
+            <div style="display:flex; gap:8px; flex-wrap:wrap">
+              <span class="tag">Python</span><span class="tag">OOP</span><span class="tag">Files</span>
+            </div>
+            <div class="cta" style="margin-top:10px">
+              <a class="btn" href="#">Source</a>
+              <a class="btn" href="#">Demo</a>
+            </div>
+          </div>
+        </article>
+        <article class="project card">
+          <div class="cover">Portfolio Website</div>
+          <div class="body">
+            <p>This site! Clean, responsive, and accessible portfolio built with vanilla HTML/CSS/JS. Deployed on GitHub Pages.</p>
+            <div style="display:flex; gap:8px; flex-wrap:wrap">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+            </div>
+            <div class="cta" style="margin-top:10px">
+              <a class="btn" href="#">Source</a>
+              <a class="btn" href="#">Live</a>
+            </div>
+          </div>
+        </article>
+        <article class="project card">
+          <div class="cover">Simple REST API</div>
+          <div class="body">
+            <p>CRUD API for notes with authentication and pagination. Wrote unit tests and docs.</p>
+            <div style="display:flex; gap:8px; flex-wrap:wrap">
+              <span class="tag">Python</span><span class="tag">Flask/FastAPI</span><span class="tag">SQLite</span>
+            </div>
+            <div class="cta" style="margin-top:10px">
+              <a class="btn" href="#">Source</a>
+              <a class="btn" href="#">Docs</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="education" class="container">
+      <h2 class="section-title">Education & Achievements</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <b>B.Tech in Artificial Intelligence & Data Science</b> — Annamacharya Institute of Technology & Sciences
+          <div class="subtitle">2023 – 2027 (expected)</div>
+          <ul style="margin:6px 0 0 18px">
+            <li>Relevant coursework: DSA,Operating Systems, OOP, Probability & Stats, Basics of ML.</li>
+            <li>Clubs: Coding Club volunteer, hackathon participant.</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <b>Certifications</b>
+          <ul style="margin:6px 0 0 18px">
+            <li>C-Programing(Intermediate)</li>
+            <li>D.S,DL,ML-WORKSHOP</li>
+            <li>Hackthon</li>
+            <li> Suprathon-hackthon</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="card" style="padding:18px">
+        <form class="contact" id="contactForm" novalidate>
+          <div>
+            <label for="name">Name</label>
+            <input class="input" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input class="input" id="email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+          <div style="grid-column:1/-1">
+            <label for="message">Message</label>
+            <textarea class="input" id="message" name="message" placeholder="Hello Rohith, we'd like to talk about an internship..." required></textarea>
+          </div>
+          <div style="grid-column:1/-1; display:flex; gap:10px; align-items:center">
+            <button class="btn primary" type="submit">Send Message</button>
+            <span id="formNote" class="subtitle" role="status"></span>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap">
+      <div>© <span id="year"></span> Rohith K. All rights reserved.</div>
+      <div style="display:flex; gap:10px">
+        <a class="tag" href="https://github.com/your-username" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="tag" href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a class="tag" href="mailto:rohith@example.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle (persist in localStorage)
+    const root = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme === 'light') root.classList.add('light');
+    themeBtn.addEventListener('click', ()=>{
+      root.classList.toggle('light');
+      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // Mobile menu
+    const nav = document.getElementById('nav');
+    const menuBtn = document.getElementById('menuBtn');
+    menuBtn.addEventListener('click', ()=>{
+      nav.classList.toggle('open');
+      const expanded = nav.classList.contains('open');
+      menuBtn.setAttribute('aria-expanded', expanded);
+    });
+
+    // Scroll spy for active links
+    const links = [...document.querySelectorAll('.nav-links a')];
+    const sections = links.map(a => document.querySelector(a.getAttribute('href')));
+    const spy = new IntersectionObserver(entries =>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          links.forEach(l=>l.classList.toggle('active', l.getAttribute('href') === '#' + entry.target.id));
+        }
+      })
+    }, {rootMargin: '-40% 0px -55% 0px', threshold: 0});
+    sections.forEach(s => s && spy.observe(s));
+
+    // Contact form (client-side validate + mailto fallback)
+    const contactForm = document.getElementById('contactForm');
+    const formNote = document.getElementById('formNote');
+    contactForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const data = new FormData(contactForm);
+      const name = data.get('name').trim();
+      const email = data.get('email').trim();
+      const message = data.get('message').trim();
+      if(!name || !email || !message){
+        formNote.textContent = 'Please fill all fields.'; return;
+      }
+      const mail = `mailto:rohith@example.com?subject=Internship%20Inquiry%20from%20${encodeURIComponent(name)}&body=${encodeURIComponent(message + '\n\nReply to: ' + email)}`;
+      window.location.href = mail;
+      formNote.textContent = 'Opening your email client...';
+      contactForm.reset();
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
